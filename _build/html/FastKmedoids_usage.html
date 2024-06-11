@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FastKmedoids Usage &#8212; My Jupyter Book</title>
+    <title>FastKmedoids Usage &#8212; FastKmedoids</title>
   
   
   
@@ -145,8 +145,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/FastKmedoids_logo.jpg" class="logo__image only-light" alt="FastKmedoids - Home"/>
+    <script>document.write(`<img src="_static/FastKmedoids_logo.jpg" class="logo__image only-dark" alt="FastKmedoids - Home"/>`);</script>
   
-    <p class="title logo__title">My Jupyter Book</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -170,7 +176,12 @@
                 </a>
             </li>
         </ul>
-        
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -210,6 +221,53 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/FastKmedoids" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/FastKmedoids/issues/new?title=Issue%20on%20page%20%2FFastKmedoids_usage.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -348,10 +406,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: FastKmedoids in c:\users\fscielzo\anaconda3\lib\site-packages (0.0.23)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: FastKmedoids in c:\users\fscielzo\anaconda3\lib\site-packages (0.0.22)Note: you may need to restart the kernel to use updated packages.
+
+Collecting FastKmedoids
+  Downloading FastKmedoids-0.0.23-py3-none-any.whl.metadata (895 bytes)
 Requirement already satisfied: polars in c:\users\fscielzo\anaconda3\lib\site-packages (from FastKmedoids) (0.19.1)
 Requirement already satisfied: numpy in c:\users\fscielzo\anaconda3\lib\site-packages (from FastKmedoids) (1.24.3)
-Note: you may need to restart the kernel to use updated packages.
+Downloading FastKmedoids-0.0.23-py3-none-any.whl (12 kB)
+Installing collected packages: FastKmedoids
+  Attempting uninstall: FastKmedoids
+    Found existing installation: FastKmedoids 0.0.22
+    Uninstalling FastKmedoids-0.0.22:
+      Successfully uninstalled FastKmedoids-0.0.22
+Successfully installed FastKmedoids-0.0.23
 </pre></div>
 </div>
 </div>
@@ -390,100 +457,6 @@ Note: you may need to restart the kernel to use updated packages.
 <span class="n">quant_df</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">quant_cols</span><span class="p">]</span>
 
 <span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">quant_df</span><span class="p">,</span> <span class="n">cat_df</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;madrid_houses.csv&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">columns_to_exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;sq_mt_allotment&#39;</span><span class="p">,</span><span class="s1">&#39;floor&#39;</span><span class="p">,</span> <span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span> <span class="s1">&#39;district&#39;</span><span class="p">]</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">columns_to_exclude</span><span class="p">))</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\polars\io\csv\functions.py:364,</span> in <span class="ni">read_csv</span><span class="nt">(source, has_header, columns, new_columns, separator, comment_char, quote_char, skip_rows, dtypes, schema, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_count_name, row_count_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines)</span>
-<span class="g g-Whitespace">    </span><span class="mi">352</span>         <span class="n">dtypes</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">353</span>             <span class="n">new_to_current</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span> <span class="n">column_name</span><span class="p">):</span> <span class="n">column_dtype</span>
-<span class="nn">    354             for column_name, column_dtype</span> in <span class="ni">dtypes.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span>         <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">357</span> <span class="k">with</span> <span class="n">_prepare_file_arg</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">358</span>     <span class="n">source</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span>     <span class="o">**</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">364</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">_read_csv</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span>         <span class="n">data</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">366</span>         <span class="n">has_header</span><span class="o">=</span><span class="n">has_header</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">367</span>         <span class="n">columns</span><span class="o">=</span><span class="n">columns</span> <span class="k">if</span> <span class="n">columns</span> <span class="k">else</span> <span class="n">projection</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">368</span>         <span class="n">separator</span><span class="o">=</span><span class="n">separator</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span>         <span class="n">comment_char</span><span class="o">=</span><span class="n">comment_char</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">370</span>         <span class="n">quote_char</span><span class="o">=</span><span class="n">quote_char</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span>         <span class="n">skip_rows</span><span class="o">=</span><span class="n">skip_rows</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span>         <span class="n">dtypes</span><span class="o">=</span><span class="n">dtypes</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span>         <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span>         <span class="n">null_values</span><span class="o">=</span><span class="n">null_values</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>         <span class="n">missing_utf8_is_empty_string</span><span class="o">=</span><span class="n">missing_utf8_is_empty_string</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="n">ignore_errors</span><span class="o">=</span><span class="n">ignore_errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>         <span class="n">try_parse_dates</span><span class="o">=</span><span class="n">try_parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span>         <span class="n">n_threads</span><span class="o">=</span><span class="n">n_threads</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span>         <span class="n">infer_schema_length</span><span class="o">=</span><span class="n">infer_schema_length</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>         <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span>         <span class="n">n_rows</span><span class="o">=</span><span class="n">n_rows</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span>         <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span> <span class="k">if</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s2">&quot;utf8-lossy&quot;</span> <span class="k">else</span> <span class="s2">&quot;utf8&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span>         <span class="n">low_memory</span><span class="o">=</span><span class="n">low_memory</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span>         <span class="n">rechunk</span><span class="o">=</span><span class="n">rechunk</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span>         <span class="n">skip_rows_after_header</span><span class="o">=</span><span class="n">skip_rows_after_header</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="n">row_count_name</span><span class="o">=</span><span class="n">row_count_name</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span>         <span class="n">row_count_offset</span><span class="o">=</span><span class="n">row_count_offset</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span>         <span class="n">sample_size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="n">eol_char</span><span class="o">=</span><span class="n">eol_char</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span>         <span class="n">raise_if_empty</span><span class="o">=</span><span class="n">raise_if_empty</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="n">truncate_ragged_lines</span><span class="o">=</span><span class="n">truncate_ragged_lines</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span> <span class="k">if</span> <span class="n">new_columns</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span>     <span class="k">return</span> <span class="n">_update_columns</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">new_columns</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\polars\dataframe\frame.py:766,</span> in <span class="ni">DataFrame._read_csv</span><span class="nt">(cls, source, has_header, columns, separator, comment_char, quote_char, skip_rows, dtypes, schema, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_count_name, row_count_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines)</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>             <span class="s2">&quot;cannot use glob patterns and integer based projection as `columns` argument&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">761</span>             <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Use columns: List[str]&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">764</span> <span class="n">projection</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">handle_projection_columns</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">766</span> <span class="bp">self</span><span class="o">.</span><span class="n">_df</span> <span class="o">=</span> <span class="n">PyDataFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">767</span>     <span class="n">source</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">768</span>     <span class="n">infer_schema_length</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">769</span>     <span class="n">batch_size</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">770</span>     <span class="n">has_header</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">771</span>     <span class="n">ignore_errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">772</span>     <span class="n">n_rows</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">773</span>     <span class="n">skip_rows</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">774</span>     <span class="n">projection</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">775</span>     <span class="n">separator</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span>     <span class="n">rechunk</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">777</span>     <span class="n">columns</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">778</span>     <span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">779</span>     <span class="n">n_threads</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="n">dtype_list</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="n">dtype_slice</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="n">low_memory</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="n">comment_char</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="n">quote_char</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="n">processed_null_values</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="n">missing_utf8_is_empty_string</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="n">try_parse_dates</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="n">skip_rows_after_header</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">_prepare_row_count_args</span><span class="p">(</span><span class="n">row_count_name</span><span class="p">,</span> <span class="n">row_count_offset</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>     <span class="n">sample_size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="n">eol_char</span><span class="o">=</span><span class="n">eol_char</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="n">raise_if_empty</span><span class="o">=</span><span class="n">raise_if_empty</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="n">truncate_ragged_lines</span><span class="o">=</span><span class="n">truncate_ragged_lines</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span> <span class="k">return</span> <span class="bp">self</span>
-
-<span class="ne">FileNotFoundError</span>: No such file or directory: madrid_houses.csv
 </pre></div>
 </div>
 </div>
@@ -1040,7 +1013,7 @@ Distance matrix size: (24, 24)
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book community
+By Fabio Scielzo Ortiz
 </p>
 
   </div>
