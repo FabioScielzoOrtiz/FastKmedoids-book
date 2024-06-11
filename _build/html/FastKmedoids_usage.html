@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FastKmedoids Usage &#8212; FastKmedoids</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'FastKmedoids_usage';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/FastKmedoids_logo.jpg" class="logo__image only-light" alt="FastKmedoids - Home"/>
+    <script>document.write(`<img src="_static/FastKmedoids_logo.jpg" class="logo__image only-dark" alt="FastKmedoids - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/FastKmedoids" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/FabioScielzoOrtiz/FastKmedoids/issues/new?title=Issue%20on%20page%20%2FFastKmedoids_usage.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/FastKmedoids_usage.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>FastKmedoids Usage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing"><strong>Data processing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fastkmedoids"><strong>FastKmedoids</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kfold-fastkmedoids"><strong>KFold FastKmedoids</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-visualization"><strong>Clustering Visualization</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-clustering-method"><strong>Single clustering method</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-clustering-method"><strong>Multiple clustering method</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fastkmedoids-usage">
+<h1><strong>FastKmedoids Usage</strong><a class="headerlink" href="#fastkmedoids-usage" title="Link to this heading">#</a></h1>
+<section id="requirements">
+<h2><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">FastKmedoids</span> <span class="o">--</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: FastKmedoids in c:\users\fscielzo\anaconda3\lib\site-packages (0.0.22)Note: you may need to restart the kernel to use updated packages.
+
+Collecting FastKmedoids
+  Downloading FastKmedoids-0.0.23-py3-none-any.whl.metadata (895 bytes)
+Requirement already satisfied: polars in c:\users\fscielzo\anaconda3\lib\site-packages (from FastKmedoids) (0.19.1)
+Requirement already satisfied: numpy in c:\users\fscielzo\anaconda3\lib\site-packages (from FastKmedoids) (1.24.3)
+Downloading FastKmedoids-0.0.23-py3-none-any.whl (12 kB)
+Installing collected packages: FastKmedoids
+  Attempting uninstall: FastKmedoids
+    Found existing installation: FastKmedoids 0.0.22
+    Uninstalling FastKmedoids-0.0.22:
+      Successfully uninstalled FastKmedoids-0.0.22
+Successfully installed FastKmedoids-0.0.23
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">polars</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">PyMachineLearning.preprocessing</span> <span class="kn">import</span> <span class="n">encoder</span>
+<span class="kn">from</span> <span class="nn">FastKmedoids.models</span> <span class="kn">import</span> <span class="n">FastKmedoidsGG</span><span class="p">,</span> <span class="n">KFoldFastKmedoidsGG</span><span class="p">,</span> <span class="n">FastGG</span>
+<span class="kn">from</span> <span class="nn">FastKmedoids.plots</span> <span class="kn">import</span> <span class="n">clustering_MDS_plot</span>
+<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">MDS</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-processing">
+<h2><strong>Data processing</strong><a class="headerlink" href="#data-processing" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;madrid_houses.csv&#39;</span><span class="p">)</span>
+<span class="n">columns_to_exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;sq_mt_allotment&#39;</span><span class="p">,</span><span class="s1">&#39;floor&#39;</span><span class="p">,</span> <span class="s1">&#39;neighborhood&#39;</span><span class="p">,</span> <span class="s1">&#39;district&#39;</span><span class="p">]</span> 
+<span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">columns_to_exclude</span><span class="p">))</span>
+
+<span class="n">binary_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_renewal_needed&#39;</span><span class="p">,</span> <span class="s1">&#39;has_lift&#39;</span><span class="p">,</span> <span class="s1">&#39;is_exterior&#39;</span><span class="p">,</span> <span class="s1">&#39;has_parking&#39;</span><span class="p">]</span>
+<span class="n">multi_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy_certificate&#39;</span><span class="p">,</span> <span class="s1">&#39;house_type&#39;</span><span class="p">]</span>
+<span class="n">quant_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">madrid_houses_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">binary_cols</span> <span class="o">+</span> <span class="n">multi_cols</span><span class="p">]</span>
+
+<span class="n">encoder_</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">)</span>
+<span class="n">encoded_arr</span> <span class="o">=</span> <span class="n">encoder_</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">binary_cols</span> <span class="o">+</span> <span class="n">multi_cols</span><span class="p">])</span>
+<span class="n">cat_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">encoded_arr</span><span class="p">)</span>
+<span class="n">cat_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span>  <span class="n">binary_cols</span> <span class="o">+</span> <span class="n">multi_cols</span>
+<span class="n">cat_df</span> <span class="o">=</span> <span class="n">cat_df</span><span class="o">.</span><span class="n">with_columns</span><span class="p">([</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+<span class="n">quant_df</span> <span class="o">=</span> <span class="n">madrid_houses_df</span><span class="p">[</span><span class="n">quant_cols</span><span class="p">]</span>
+
+<span class="n">madrid_houses_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">quant_df</span><span class="p">,</span> <span class="n">cat_df</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">madrid_houses_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr > th,
+.dataframe > tbody > tr > td {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 11)</small><table border="1" class="dataframe"><thead><tr><th>sq_mt_built</th><th>n_rooms</th><th>n_bathrooms</th><th>n_floors</th><th>buy_price</th><th>is_renewal_needed</th><th>has_lift</th><th>is_exterior</th><th>has_parking</th><th>energy_certificate</th><th>house_type</th></tr><tr><td>f64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td><td>i64</td></tr></thead><tbody><tr><td>64.0</td><td>2</td><td>1</td><td>1</td><td>85000</td><td>0</td><td>0</td><td>1</td><td>0</td><td>4</td><td>0</td></tr><tr><td>70.0</td><td>3</td><td>1</td><td>1</td><td>129900</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>94.0</td><td>2</td><td>2</td><td>1</td><td>144247</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>64.0</td><td>2</td><td>1</td><td>1</td><td>109900</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>108.0</td><td>2</td><td>2</td><td>1</td><td>260000</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">madrid_houses_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21739, 11)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fastkmedoids">
+<h2><strong>FastKmedoids</strong><a class="headerlink" href="#fastkmedoids" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FastKmedoidsGG</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the Fast-K-medoids algorithm based on the Generalized Gower distance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                       <span class="n">p1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                       <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                       <span class="n">fast_VG</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">VG_sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">VG_n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor method.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            n_clusters: the number of clusters.</span>
+<span class="sd">            method: the k-medoids clustering method. Must be in [&#39;pam&#39;, &#39;alternate&#39;]. PAM is the classic one, more accurate but slower.</span>
+<span class="sd">            init: the k-medoids initialization method. Must be in [&#39;heuristic&#39;, &#39;random&#39;]. Heuristic is the classic one, smarter burt slower.</span>
+<span class="sd">            max_iter: the maximum number of iterations run by k-medodis.</span>
+<span class="sd">            frac_sample_size: the sample size in proportional terms.</span>
+<span class="sd">            random_state: the random seed used for the (random) sample elements.</span>
+<span class="sd">            p1, p2, p3: number of quantitative, binary and multi-class variables in the considered data matrix, respectively. Must be a non negative integer.</span>
+<span class="sd">            d1: name of the distance to be computed for quantitative variables. Must be an string in [&#39;euclidean&#39;, &#39;minkowski&#39;, &#39;canberra&#39;, &#39;mahalanobis&#39;, &#39;robust_mahalanobis&#39;]. </span>
+<span class="sd">            d2: name of the distance to be computed for binary variables. Must be an string in [&#39;sokal&#39;, &#39;jaccard&#39;].</span>
+<span class="sd">            d3: name of the distance to be computed for multi-class variables. Must be an string in [&#39;matching&#39;].</span>
+<span class="sd">            q: the parameter that defines the Minkowski distance. Must be a positive integer.</span>
+<span class="sd">            robust_maha_method: the method to be used for computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            alpha : a real number in [0,1] that is used if `method` is &#39;trimmed&#39; or &#39;winsorized&#39;. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            epsilon: parameter used by the Delvin algorithm that is used when computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            n_iters: maximum number of iterations used by the Delvin algorithm. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            fast_VG: whether the geometric variability estimation will be full (False) or fast (True).</span>
+<span class="sd">            VG_sample_size: sample size to be used to make the estimation of the geometric variability.</span>
+<span class="sd">            VG_n_samples: number of samples to be used to make the estimation of the geometric variability.</span>
+<span class="sd">            y_type: the type of response variable. Must be in [&#39;quantitative&#39;, &#39;binary&#39;, &#39;multiclass&#39;].</span>
+<span class="sd">            verbose: a boolean that controls whether certain info messages are printed or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit method: fitting the fast k-medoids algorithm to `X` (and `y` if needed).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">            y: a Pandas or Polars series or a NumPy array. Represents a response variable. Is not required.</span>
+<span class="sd">            weights: the sample weights, if exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict method: predicting clusters for `X` observation by assigning them to their nearest cluster (medoid) according to Generalized Gower distance.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids</span> <span class="o">=</span> <span class="n">FastKmedoidsGG</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                                <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">madrid_houses_df</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (217, 217)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 1, 1, ..., 0, 0, 0], dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21739,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">D_GG</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 2.0632824 , 2.09686916, ..., 3.20285353, 1.84380918,
+        3.14611266],
+       [2.0632824 , 0.        , 2.49128404, ..., 3.09380609, 3.01923008,
+        1.43032853],
+       [2.09686916, 2.49128404, 0.        , ..., 2.81596982, 3.36492227,
+        2.98877842],
+       ...,
+       [3.20285353, 3.09380609, 2.81596982, ..., 0.        , 3.21190291,
+        2.87445442],
+       [1.84380918, 3.01923008, 3.36492227, ..., 3.21190291, 0.        ,
+        2.97473498],
+       [3.14611266, 1.43032853, 2.98877842, ..., 2.87445442, 2.97473498,
+        0.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">D_GG</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(217, 217)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kfold-fastkmedoids">
+<h2><strong>KFold FastKmedoids</strong><a class="headerlink" href="#kfold-fastkmedoids" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KFoldFastKmedoidsGG</span> <span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the K-Fold Fast-K-medoids algorithm based on the Generalized Gower distance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                 <span class="n">p1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                 <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">fast_VG</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">VG_sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">VG_n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kfold_random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                 <span class="n">y_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor method.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            n_clusters: the number of clusters.</span>
+<span class="sd">            method: the k-medoids clustering method. Must be in [&#39;pam&#39;, &#39;alternate&#39;]. PAM is the classic one, more accurate but slower.</span>
+<span class="sd">            init: the k-medoids initialization method. Must be in [&#39;heuristic&#39;, &#39;random&#39;]. Heuristic is the classic one, smarter burt slower.</span>
+<span class="sd">            max_iter: the maximum number of iterations run by k-medodis.</span>
+<span class="sd">            frac_sample_size: the sample size in proportional terms.</span>
+<span class="sd">            random_state: the random seed used for the (random) sample elements.</span>
+<span class="sd">            p1, p2, p3: number of quantitative, binary and multi-class variables in the considered data matrix, respectively. Must be a non negative integer.</span>
+<span class="sd">            d1: name of the distance to be computed for quantitative variables. Must be an string in [&#39;euclidean&#39;, &#39;minkowski&#39;, &#39;canberra&#39;, &#39;mahalanobis&#39;, &#39;robust_mahalanobis&#39;]. </span>
+<span class="sd">            d2: name of the distance to be computed for binary variables. Must be an string in [&#39;sokal&#39;, &#39;jaccard&#39;].</span>
+<span class="sd">            d3: name of the distance to be computed for multi-class variables. Must be an string in [&#39;matching&#39;].</span>
+<span class="sd">            q: the parameter that defines the Minkowski distance. Must be a positive integer.</span>
+<span class="sd">            robust_maha_method: the method to be used for computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            alpha : a real number in [0,1] that is used if `method` is &#39;trimmed&#39; or &#39;winsorized&#39;. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            epsilon: parameter used by the Delvin algorithm that is used when computing the robust covariance matrix. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            n_iters: maximum number of iterations used by the Delvin algorithm. Only needed when d1 = &#39;robust_mahalanobis&#39;.</span>
+<span class="sd">            fast_VG: whether the geometric variability estimation will be full (False) or fast (True).</span>
+<span class="sd">            VG_sample_size: sample size to be used to make the estimation of the geometric variability.</span>
+<span class="sd">            VG_n_samples: number of samples to be used to make the estimation of the geometric variability.</span>
+<span class="sd">            y_type: the type of response variable. Must be in [&#39;quantitative&#39;, &#39;binary&#39;, &#39;multiclass&#39;].</span>
+<span class="sd">            n_splits: number of folds to be used.</span>
+<span class="sd">            shuffle: whether data is shuffled before applying KFold or not, must be in [True, False]. </span>
+<span class="sd">            kfold_random_state: the random seed for KFold if shuffle = True.</span>
+<span class="sd">            verbose: a boolean that controls whether certain info messages are printed or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fit method: fitting the fast k-medoids algorithm to `X` (and `y` if needed).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">            y: a Pandas or Polars series or a NumPy array. Represents a response variable. Is not required.</span>
+<span class="sd">            weights: the sample weights, if exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict method: predicting clusters for `X` observation by assigning them to their nearest cluster (medoid) according to Generalized Gower distance.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X: a Pandas or Polars data-frame or a NumPy array. Represents a predictors matrix. Is required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kfold_fast_kmedoids</span> <span class="o">=</span> <span class="n">KFoldFastKmedoidsGG</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                          <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kfold_random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                          <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                                          <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                          <span class="n">fast_VG</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">VG_sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">VG_n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">kfold_fast_kmedoids</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">madrid_houses_df</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Num.Folds: 10. Fold size: 2173.
+Distance matrix size: 218 (0.1*2173) 
+Clustering Fold 0
+Distance matrix size: (217, 217)
+Clustering Fold 1
+Distance matrix size: (217, 217)
+Clustering Fold 2
+Distance matrix size: (217, 217)
+Clustering Fold 3
+Distance matrix size: (217, 217)
+Clustering Fold 4
+Distance matrix size: (217, 217)
+Clustering Fold 5
+Distance matrix size: (217, 217)
+Clustering Fold 6
+Distance matrix size: (217, 217)
+Clustering Fold 7
+Distance matrix size: (217, 217)
+Clustering Fold 8
+Distance matrix size: (217, 217)
+Clustering Fold 9
+Distance matrix size: (217, 217)
+X_medoids size: (30, 11)
+Distance matrix size: (24, 24)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kfold_fast_kmedoids</span><span class="o">.</span><span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 1, ..., 1, 1, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kfold_fast_kmedoids</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(21739,)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="clustering-visualization">
+<h2><strong>Clustering Visualization</strong><a class="headerlink" href="#clustering-visualization" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clustering_MDS_plot</span><span class="p">(</span><span class="n">X_mds</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">n_rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+                        <span class="n">title_size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">title_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">points_size</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">title_height</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">subtitles_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">subtitle_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                        <span class="n">hspace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">legend_size</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Displays the MDS plot for one or several clustering configurations, </span>
+<span class="sd">    differentiating the cluster labels and the real groups, if they are known.</span>
+
+<span class="sd">    Parameters (inputs)</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X_mds: a numpy array with the MDS matrix for the distance matrix used in the considered clustering configuration.</span>
+<span class="sd">    y_pred: a numpy array with the predictions of the response for the single case or a dictionary with those arrays as items for the multiple case.</span>
+<span class="sd">    y_true: a numpy array with the true values of the response. Not required.</span>
+<span class="sd">    title: the title of the plot. </span>
+<span class="sd">    accuracy: the accuracy of the clustering algorithm, if computed. Not required.</span>
+<span class="sd">    time: the execution time of the clustering algorithm, if computed. Not required.</span>
+<span class="sd">    figsize: the size of the plot.</span>
+<span class="sd">    bbox_to_anchor: the size of the legend box.</span>
+<span class="sd">    title_fontsize: the size of the font of the title.</span>
+<span class="sd">    title_weight: the weight of the title.</span>
+<span class="sd">    points_size: the size of the points of the plot.</span>
+<span class="sd">    title_height: the height of the tile of the plot.</span>
+<span class="sd">    subtitles_size: subtitles sizes, for the multiple case.</span>
+<span class="sd">    subtitle_weight: subtitle weight, for the multiple case.</span>
+<span class="sd">    hspace: height space between the subplots, for the multiple case.</span>
+<span class="sd">    wspace: width space between the subplots, for the multiple case.</span>
+<span class="sd">    legend_size: size of the legend.</span>
+<span class="sd">    save: whether the plot is saved or not.</span>
+<span class="sd">    file_name: file name if the plot is saved.</span>
+
+<span class="sd">    Returns (outputs)</span>
+<span class="sd">    -------</span>
+<span class="sd">    The described plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="single-clustering-method">
+<h3><strong>Single clustering method</strong><a class="headerlink" href="#single-clustering-method" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids</span> <span class="o">=</span> <span class="n">FastKmedoidsGG</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                                <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">madrid_houses_df</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (652, 652)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mds</span> <span class="o">=</span> <span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dissimilarity</span><span class="o">=</span><span class="s1">&#39;precomputed&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span> 
+<span class="n">X_mds</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">D_GG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\fscielzo\anaconda3\Lib\site-packages\sklearn\manifold\_mds.py:298: FutureWarning: The default value of `normalized_stress` will change to `&#39;auto&#39;` in version 1.4. To suppress this warning, manually set the value of `normalized_stress`.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clustering_MDS_plot</span><span class="p">(</span><span class="n">X_mds</span><span class="o">=</span><span class="n">X_mds</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">sample_index</span><span class="p">],</span> 
+                    <span class="n">y_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Predicted Groups&#39;</span><span class="p">,</span> <span class="n">title_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">title_height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                    <span class="n">accuracy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">points_size</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span> <span class="n">legend_size</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+                    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of data points plotted: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fast_kmedoids</span><span class="o">.</span><span class="n">D_GG</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/465ddd3cb815052032a2112c6377db62a5fc8cd1f69e46e0fdf16e08a322d1f6.png" src="_images/465ddd3cb815052032a2112c6377db62a5fc8cd1f69e46e0fdf16e08a322d1f6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of data points plotted: 652
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-clustering-method">
+<h3><strong>Multiple clustering method</strong><a class="headerlink" href="#multiple-clustering-method" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mds</span> <span class="o">=</span> <span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dissimilarity</span><span class="o">=</span><span class="s1">&#39;precomputed&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span> 
+
+<span class="n">fastGG</span> <span class="o">=</span> <span class="n">FastGG</span><span class="p">(</span><span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                 <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                 <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">fastGG</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">madrid_houses_df</span><span class="p">)</span>
+
+<span class="n">X_mds</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fastGG</span><span class="o">.</span><span class="n">D_GG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (652, 652)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\fscielzo\anaconda3\Lib\site-packages\sklearn\manifold\_mds.py:298: FutureWarning: The default value of `normalized_stress` will change to `&#39;auto&#39;` in version 1.4. To suppress this warning, manually set the value of `normalized_stress`.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids_RM</span> <span class="o">=</span> <span class="n">FastKmedoidsGG</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;robust_mahalanobis&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">,</span> 
+                                <span class="n">robust_maha_method</span><span class="o">=</span><span class="s1">&#39;trimmed&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fast_kmedoids_RM</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">madrid_houses_df</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (652, 652)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids_euclidean</span> <span class="o">=</span> <span class="n">FastKmedoidsGG</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;sokal&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">)</span>
+<span class="n">fast_kmedoids_euclidean</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">madrid_houses_df</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (652, 652)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_kmedoids_canberra</span> <span class="o">=</span> <span class="n">FastKmedoidsGG</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;pam&#39;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;heuristic&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+                                <span class="n">frac_sample_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">p3</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                <span class="n">d1</span><span class="o">=</span><span class="s1">&#39;canberra&#39;</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">d3</span><span class="o">=</span><span class="s1">&#39;matching&#39;</span><span class="p">)</span>
+<span class="n">fast_kmedoids_canberra</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">madrid_houses_df</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance matrix size: (652, 652)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Fast KMedoids RobustMaha&#39;</span><span class="p">:</span> <span class="n">fast_kmedoids_RM</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">fastGG</span><span class="o">.</span><span class="n">sample_index</span><span class="p">],</span>
+          <span class="s1">&#39;Fast KMedoids Euclidean&#39;</span><span class="p">:</span> <span class="n">fast_kmedoids_euclidean</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">fastGG</span><span class="o">.</span><span class="n">sample_index</span><span class="p">],</span>
+          <span class="s1">&#39;Fast KMedoids Canberra&#39;</span><span class="p">:</span> <span class="n">fast_kmedoids_canberra</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">fastGG</span><span class="o">.</span><span class="n">sample_index</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clustering_MDS_plot</span><span class="p">(</span><span class="n">X_mds</span><span class="o">=</span><span class="n">X_mds</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Multiple Clustering Visualization&#39;</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="n">n_rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.22</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+                    <span class="n">title_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">title_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">points_size</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">title_height</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> 
+                    <span class="n">subtitles_size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">subtitle_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+                    <span class="n">hspace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">legend_size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/088acdf39f72c660b6767fc968e8a265ab69511989c2147333f750e7ec6023b4.png" src="_images/088acdf39f72c660b6767fc968e8a265ab69511989c2147333f750e7ec6023b4.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing"><strong>Data processing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fastkmedoids"><strong>FastKmedoids</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kfold-fastkmedoids"><strong>KFold FastKmedoids</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-visualization"><strong>Clustering Visualization</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-clustering-method"><strong>Single clustering method</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-clustering-method"><strong>Multiple clustering method</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabio Scielzo Ortiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
