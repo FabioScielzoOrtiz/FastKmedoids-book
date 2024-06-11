@@ -1,0 +1,133 @@
+Traceback (most recent call last):
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\fscielzo\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\fscielzo\anaconda3\Lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+madrid_houses_df = pl.read_csv('madrid_houses.csv')
+columns_to_exclude = ['', 'id','sq_mt_allotment','floor', 'neighborhood', 'district'] 
+madrid_houses_df = madrid_houses_df.select(pl.exclude(columns_to_exclude))
+
+binary_cols = ['is_renewal_needed', 'has_lift', 'is_exterior', 'has_parking']
+multi_cols = ['energy_certificate', 'house_type']
+quant_cols = [x for x in madrid_houses_df.columns if x not in binary_cols + multi_cols]
+
+encoder_ = encoder(method='ordinal')
+encoded_arr = encoder_.fit_transform(madrid_houses_df[binary_cols + multi_cols])
+cat_df = pl.DataFrame(encoded_arr)
+cat_df.columns =  binary_cols + multi_cols
+cat_df = cat_df.with_columns([pl.col(col).cast(pl.Int64) for col in cat_df.columns])
+quant_df = madrid_houses_df[quant_cols]
+
+madrid_houses_df = pl.concat([quant_df, cat_df], how='horizontal')
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [1;32mIn[3], line 1[0m
+[1;32m----> 1[0m madrid_houses_df [38;5;241m=[39m [43mpl[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mmadrid_houses.csv[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[0;32m      2[0m columns_to_exclude [38;5;241m=[39m [[38;5;124m'[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mid[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124msq_mt_allotment[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mfloor[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mneighborhood[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mdistrict[39m[38;5;124m'[39m] 
+[0;32m      3[0m madrid_houses_df [38;5;241m=[39m madrid_houses_df[38;5;241m.[39mselect(pl[38;5;241m.[39mexclude(columns_to_exclude))
+
+File [1;32m~\anaconda3\Lib\site-packages\polars\io\csv\functions.py:364[0m, in [0;36mread_csv[1;34m(source, has_header, columns, new_columns, separator, comment_char, quote_char, skip_rows, dtypes, schema, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, use_pyarrow, storage_options, skip_rows_after_header, row_count_name, row_count_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines)[0m
+[0;32m    352[0m         dtypes [38;5;241m=[39m {
+[0;32m    353[0m             new_to_current[38;5;241m.[39mget(column_name, column_name): column_dtype
+[0;32m    354[0m             [38;5;28;01mfor[39;00m column_name, column_dtype [38;5;129;01min[39;00m dtypes[38;5;241m.[39mitems()
+[0;32m    355[0m         }
+[0;32m    357[0m [38;5;28;01mwith[39;00m _prepare_file_arg(
+[0;32m    358[0m     source,
+[0;32m    359[0m     encoding[38;5;241m=[39mencoding,
+[1;32m   (...)[0m
+[0;32m    362[0m     [38;5;241m*[39m[38;5;241m*[39mstorage_options,
+[0;32m    363[0m ) [38;5;28;01mas[39;00m data:
+[1;32m--> 364[0m     df [38;5;241m=[39m [43mpl[49m[38;5;241;43m.[39;49m[43mDataFrame[49m[38;5;241;43m.[39;49m[43m_read_csv[49m[43m([49m
+[0;32m    365[0m [43m        [49m[43mdata[49m[43m,[49m
+[0;32m    366[0m [43m        [49m[43mhas_header[49m[38;5;241;43m=[39;49m[43mhas_header[49m[43m,[49m
+[0;32m    367[0m [43m        [49m[43mcolumns[49m[38;5;241;43m=[39;49m[43mcolumns[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mcolumns[49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[43mprojection[49m[43m,[49m
+[0;32m    368[0m [43m        [49m[43mseparator[49m[38;5;241;43m=[39;49m[43mseparator[49m[43m,[49m
+[0;32m    369[0m [43m        [49m[43mcomment_char[49m[38;5;241;43m=[39;49m[43mcomment_char[49m[43m,[49m
+[0;32m    370[0m [43m        [49m[43mquote_char[49m[38;5;241;43m=[39;49m[43mquote_char[49m[43m,[49m
+[0;32m    371[0m [43m        [49m[43mskip_rows[49m[38;5;241;43m=[39;49m[43mskip_rows[49m[43m,[49m
+[0;32m    372[0m [43m        [49m[43mdtypes[49m[38;5;241;43m=[39;49m[43mdtypes[49m[43m,[49m
+[0;32m    373[0m [43m        [49m[43mschema[49m[38;5;241;43m=[39;49m[43mschema[49m[43m,[49m
+[0;32m    374[0m [43m        [49m[43mnull_values[49m[38;5;241;43m=[39;49m[43mnull_values[49m[43m,[49m
+[0;32m    375[0m [43m        [49m[43mmissing_utf8_is_empty_string[49m[38;5;241;43m=[39;49m[43mmissing_utf8_is_empty_string[49m[43m,[49m
+[0;32m    376[0m [43m        [49m[43mignore_errors[49m[38;5;241;43m=[39;49m[43mignore_errors[49m[43m,[49m
+[0;32m    377[0m [43m        [49m[43mtry_parse_dates[49m[38;5;241;43m=[39;49m[43mtry_parse_dates[49m[43m,[49m
+[0;32m    378[0m [43m        [49m[43mn_threads[49m[38;5;241;43m=[39;49m[43mn_threads[49m[43m,[49m
+[0;32m    379[0m [43m        [49m[43minfer_schema_length[49m[38;5;241;43m=[39;49m[43minfer_schema_length[49m[43m,[49m
+[0;32m    380[0m [43m        [49m[43mbatch_size[49m[38;5;241;43m=[39;49m[43mbatch_size[49m[43m,[49m
+[0;32m    381[0m [43m        [49m[43mn_rows[49m[38;5;241;43m=[39;49m[43mn_rows[49m[43m,[49m
+[0;32m    382[0m [43m        [49m[43mencoding[49m[38;5;241;43m=[39;49m[43mencoding[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mencoding[49m[43m [49m[38;5;241;43m==[39;49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mutf8-lossy[39;49m[38;5;124;43m"[39;49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mutf8[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[0;32m    383[0m [43m        [49m[43mlow_memory[49m[38;5;241;43m=[39;49m[43mlow_memory[49m[43m,[49m
+[0;32m    384[0m [43m        [49m[43mrechunk[49m[38;5;241;43m=[39;49m[43mrechunk[49m[43m,[49m
+[0;32m    385[0m [43m        [49m[43mskip_rows_after_header[49m[38;5;241;43m=[39;49m[43mskip_rows_after_header[49m[43m,[49m
+[0;32m    386[0m [43m        [49m[43mrow_count_name[49m[38;5;241;43m=[39;49m[43mrow_count_name[49m[43m,[49m
+[0;32m    387[0m [43m        [49m[43mrow_count_offset[49m[38;5;241;43m=[39;49m[43mrow_count_offset[49m[43m,[49m
+[0;32m    388[0m [43m        [49m[43msample_size[49m[38;5;241;43m=[39;49m[43msample_size[49m[43m,[49m
+[0;32m    389[0m [43m        [49m[43meol_char[49m[38;5;241;43m=[39;49m[43meol_char[49m[43m,[49m
+[0;32m    390[0m [43m        [49m[43mraise_if_empty[49m[38;5;241;43m=[39;49m[43mraise_if_empty[49m[43m,[49m
+[0;32m    391[0m [43m        [49m[43mtruncate_ragged_lines[49m[38;5;241;43m=[39;49m[43mtruncate_ragged_lines[49m[43m,[49m
+[0;32m    392[0m [43m    [49m[43m)[49m
+[0;32m    394[0m [38;5;28;01mif[39;00m new_columns:
+[0;32m    395[0m     [38;5;28;01mreturn[39;00m _update_columns(df, new_columns)
+
+File [1;32m~\anaconda3\Lib\site-packages\polars\dataframe\frame.py:766[0m, in [0;36mDataFrame._read_csv[1;34m(cls, source, has_header, columns, separator, comment_char, quote_char, skip_rows, dtypes, schema, null_values, missing_utf8_is_empty_string, ignore_errors, try_parse_dates, n_threads, infer_schema_length, batch_size, n_rows, encoding, low_memory, rechunk, skip_rows_after_header, row_count_name, row_count_offset, sample_size, eol_char, raise_if_empty, truncate_ragged_lines)[0m
+[0;32m    759[0m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    760[0m             [38;5;124m"[39m[38;5;124mcannot use glob patterns and integer based projection as `columns` argument[39m[38;5;124m"[39m
+[0;32m    761[0m             [38;5;124m"[39m[38;5;130;01m\n[39;00m[38;5;130;01m\n[39;00m[38;5;124mUse columns: List[str][39m[38;5;124m"[39m
+[0;32m    762[0m         )
+[0;32m    764[0m projection, columns [38;5;241m=[39m handle_projection_columns(columns)
+[1;32m--> 766[0m [38;5;28mself[39m[38;5;241m.[39m_df [38;5;241m=[39m [43mPyDataFrame[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m
+[0;32m    767[0m [43m    [49m[43msource[49m[43m,[49m
+[0;32m    768[0m [43m    [49m[43minfer_schema_length[49m[43m,[49m
+[0;32m    769[0m [43m    [49m[43mbatch_size[49m[43m,[49m
+[0;32m    770[0m [43m    [49m[43mhas_header[49m[43m,[49m
+[0;32m    771[0m [43m    [49m[43mignore_errors[49m[43m,[49m
+[0;32m    772[0m [43m    [49m[43mn_rows[49m[43m,[49m
+[0;32m    773[0m [43m    [49m[43mskip_rows[49m[43m,[49m
+[0;32m    774[0m [43m    [49m[43mprojection[49m[43m,[49m
+[0;32m    775[0m [43m    [49m[43mseparator[49m[43m,[49m
+[0;32m    776[0m [43m    [49m[43mrechunk[49m[43m,[49m
+[0;32m    777[0m [43m    [49m[43mcolumns[49m[43m,[49m
+[0;32m    778[0m [43m    [49m[43mencoding[49m[43m,[49m
+[0;32m    779[0m [43m    [49m[43mn_threads[49m[43m,[49m
+[0;32m    780[0m [43m    [49m[43mpath[49m[43m,[49m
+[0;32m    781[0m [43m    [49m[43mdtype_list[49m[43m,[49m
+[0;32m    782[0m [43m    [49m[43mdtype_slice[49m[43m,[49m
+[0;32m    783[0m [43m    [49m[43mlow_memory[49m[43m,[49m
+[0;32m    784[0m [43m    [49m[43mcomment_char[49m[43m,[49m
+[0;32m    785[0m [43m    [49m[43mquote_char[49m[43m,[49m
+[0;32m    786[0m [43m    [49m[43mprocessed_null_values[49m[43m,[49m
+[0;32m    787[0m [43m    [49m[43mmissing_utf8_is_empty_string[49m[43m,[49m
+[0;32m    788[0m [43m    [49m[43mtry_parse_dates[49m[43m,[49m
+[0;32m    789[0m [43m    [49m[43mskip_rows_after_header[49m[43m,[49m
+[0;32m    790[0m [43m    [49m[43m_prepare_row_count_args[49m[43m([49m[43mrow_count_name[49m[43m,[49m[43m [49m[43mrow_count_offset[49m[43m)[49m[43m,[49m
+[0;32m    791[0m [43m    [49m[43msample_size[49m[38;5;241;43m=[39;49m[43msample_size[49m[43m,[49m
+[0;32m    792[0m [43m    [49m[43meol_char[49m[38;5;241;43m=[39;49m[43meol_char[49m[43m,[49m
+[0;32m    793[0m [43m    [49m[43mraise_if_empty[49m[38;5;241;43m=[39;49m[43mraise_if_empty[49m[43m,[49m
+[0;32m    794[0m [43m    [49m[43mtruncate_ragged_lines[49m[38;5;241;43m=[39;49m[43mtruncate_ragged_lines[49m[43m,[49m
+[0;32m    795[0m [43m    [49m[43mschema[49m[38;5;241;43m=[39;49m[43mschema[49m[43m,[49m
+[0;32m    796[0m [43m[49m[43m)[49m
+[0;32m    797[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m
+
+[1;31mFileNotFoundError[0m: No such file or directory: madrid_houses.csv
+FileNotFoundError: No such file or directory: madrid_houses.csv
+
